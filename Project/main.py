@@ -1,4 +1,5 @@
 import time
+listaTarefas = []
 
 def tarefasGerais(tituloTarefa: str, descTarefa: str, prioridadeTarefa: str):
     dicionario = {
@@ -9,12 +10,17 @@ def tarefasGerais(tituloTarefa: str, descTarefa: str, prioridadeTarefa: str):
     listaTarefas.append(dicionario)
     return listaTarefas
 
+def mostrarTarefas(listaTarefas):
+    contagemTarefa = 0
+    for dicionario in listaTarefas:
+        contagemTarefa += 1
+        print(f"---Tarefa {contagemTarefa} ---")
+        for chave, valor in dicionario.items():
+            print(f"{chave}: {valor}")
 
 
-listaTarefas = []
-contagem = 0
-while True:
-    print("---TASKFLOW - GERENCIADOR DE TAREFAS---".center(30)) # DEPOIS VER O MOTIVO DESSE CENTER NÃO ESTA FUNCIONANDO...
+def home():
+    print("---TASKFLOW - GERENCIADOR DE TAREFAS---") # DEPOIS VER O MOTIVO DESSE CENTER NÃO ESTA FUNCIONANDO...
     escolha = int(input("""
     Escolha uma das opções abaixo:
      1 - Adicionar uma tarefa.
@@ -22,8 +28,12 @@ while True:
      3 - Listar Tarefas.
      4 - Editar Tarafa.
      5 - Sair.
-"""))
+    Digite a escolha desejada:"""))
+    return escolha
 
+
+
+def loading():
     time.sleep(0.20)
     print("Carregando.")
     time.sleep(0.25)
@@ -33,24 +43,44 @@ while True:
 
 
 
+
+
+
+
+contagem = 0
+escolha = home()
+print(escolha)
+
+while True:
+
+    
+    loading()
+
+
+
     if escolha == 1:
         contagem += 1
-        # DEPOIS FAZER UMA FUNÇÃO SÓ DE INPUT'S PRO USUARIO!!!!
-        tituloTarefa = input(f"Digite o titulo {contagem}º da tarefa: ")
-        descTarefa = input(f"Digite a descrição {contagem}º da tarefa: ")
-        prioridadeTarefa = input(f"Digite a prioridade {contagem}º da tarefa: ")
-        print(tarefasGerais(tituloTarefa,descTarefa,prioridadeTarefa))
-        continuar = input("Deseja continuar? SIM/NÃO") # ******MELHORAR O CODIGO E LOGICA A PARTIR DAQUI!******
-        if continuar == "SIM":
-            continue
-        elif continuar == "NÃO":
-            escolha = 2
-        else:
-            print("Escolha invalida!")
+        
+        tituloTarefa = input(f"Digite o titulo da {contagem}º tarefa: ")
+        descTarefa = input(f"Digite a descrição da {contagem}º tarefa: ")
+        prioridadeTarefa = input(f"Digite a prioridade da {contagem}º tarefa: ")
+        # print(tarefasGerais(tituloTarefa,descTarefa,prioridadeTarefa))
+        tarefasGerais(tituloTarefa,descTarefa,prioridadeTarefa)
+        
+        mostrarTarefas(listaTarefas)
+    continuar = input("Deseja continuar? S/N: ").upper()# ******MELHORAR O CODIGO E LOGICA A PARTIR DAQUI!******
+    if continuar == "S":
+        print("Certo... Indo pra proxima tarefa!")
+    elif continuar == "N":
+
+        print(escolha)
+        
+    else:
+        print("Escolha invalida!")
 
 
-    elif escolha == 2:
-        removeTarefa = input("Escreva o nome da tarefa que deseja remover: ")
-        dicionario = tarefasGerais(dicionario)
-        del(dicionario[removeTarefa])
-        print(tarefasGerais)
+    # elif escolha == 2:
+    #     removeTarefa = input("Escreva o nome da tarefa que deseja remover: ")
+    #     dicionario = tarefasGerais(dicionario)
+    #     del(dicionario[removeTarefa])
+    #     print(tarefasGerais)
