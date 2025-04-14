@@ -1,10 +1,15 @@
-lista = [{
-    "Titulo": "titulo de teste",
-    "Descrição": "Descrição de teste"
-}, {
-    "Titulo2": "titulo de teste2",
-    "Descrição2": "Descrição de teste2"
-} ]
-for dicionario in lista:
-    for chave, valor in dicionario.items():
-        print(chave,valor)
+def home():
+    print("---TASKFLOW - GERENCIADOR DE TAREFAS---") # DEPOIS VER O MOTIVO DESSE CENTER NÃO ESTA FUNCIONANDO...
+    escolha = int(input("""
+    Escolha uma das opções abaixo:
+     1 - Adicionar uma tarefa.
+     2 - Remover uma tarefa.
+     3 - Listar Tarefas.
+     4 - Editar Tarafa.
+     5 - Sair.
+    Digite a escolha desejada:"""))
+    return escolha
+
+
+
+escolha = home() 

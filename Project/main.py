@@ -1,6 +1,5 @@
 import time
 listaTarefas = []
-
 def tarefasGerais(tituloTarefa: str, descTarefa: str, prioridadeTarefa: str):
     dicionario = {
         "Titulo da tarefa": tituloTarefa,
@@ -17,6 +16,11 @@ def mostrarTarefas(listaTarefas):
         print(f"---Tarefa {contagemTarefa} ---")
         for chave, valor in dicionario.items():
             print(f"{chave}: {valor}")
+
+    if escolha == 2: # TALVEZ TER FEITO ISSO NÃO TENHA SIDO UMA BOA IDEIA... VER DPS!!!
+        del(dicionario[removeTarefa])
+        print(f"Tarefa {removeTarefa} removida com sucesso!")
+
 
 
 def home():
@@ -49,7 +53,7 @@ def loading():
 
 contagem = 0
 escolha = home()
-print(escolha)
+
 
 while True:
 
@@ -68,19 +72,26 @@ while True:
         tarefasGerais(tituloTarefa,descTarefa,prioridadeTarefa)
         
         mostrarTarefas(listaTarefas)
-    continuar = input("Deseja continuar? S/N: ").upper()# ******MELHORAR O CODIGO E LOGICA A PARTIR DAQUI!******
+        continuar = input("Deseja continuar? S/N: ").upper()# ******MELHORAR O CODIGO E LOGICA A PARTIR DAQUI!******
+
+    elif escolha == 2: # RESOLVER OS PROBLEMAS DAQUI.
+        removeTarefa = input("Escreva o nome da tarefa que deseja remover: ")
+        # dicionario = tarefasGerais(tituloTarefa)
+
+        # dicionario = tarefasGerais(dicionario)
+        # del(dicionario[removeTarefa])
+        # print(tarefasGerais())
+        mostrarTarefas(listaTarefas)
+        
     if continuar == "S":
         print("Certo... Indo pra proxima tarefa!")
     elif continuar == "N":
-
-        print(escolha)
-        
+        print("Voltando pro menu inicial...")
+        escolha = home() 
+        continue
     else:
         print("Escolha invalida!")
 
+        
 
-    # elif escolha == 2:
-    #     removeTarefa = input("Escreva o nome da tarefa que deseja remover: ")
-    #     dicionario = tarefasGerais(dicionario)
-    #     del(dicionario[removeTarefa])
-    #     print(tarefasGerais)
+
